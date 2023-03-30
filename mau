@@ -1,0 +1,26 @@
+from diagrams import Cluster, Diagram, Node
+
+def get_scout_info():
+    with Cluster("Scout Information"):
+        scout = Node("Scout")
+        boxes = Node("Number of Boxes Sold")
+    return scout, boxes
+
+def calculate_total_boxes_sold(boxes):
+    total = Node("Total Boxes Sold")
+    boxes >> total
+    return total
+
+def calculate_mean_and_median(total):
+    mean = Node("Mean Value")
+    median = Node("Median Value")
+    sorted_list = Node("Sorted List by Last Name")
+    total >> sorted_list
+    sorted_list >> mean
+    sorted_list >> median
+    return mean, median, sorted_list
+
+with Diagram("Girl Scout Troop 815 Flowchart", show=False):
+    scout, boxes = get_scout_info()
+    total = calculate_total_boxes_sold(boxes)
+    mean, median, sorted_list = calculate_mean_and_median(total)
